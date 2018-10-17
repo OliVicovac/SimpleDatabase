@@ -40,7 +40,7 @@ class Student(Resource):
     def delete(self):
         parser = reqparse.RequestParser()
         parser.add_argument('email', type=str)
-        self.db.execute('DELETE FROM student')
+        self.db.execute('DELETE FROM student WHERE email = ' + parser.parse_args().email)
         return "deleted"
 
 api.add_resource(Student, "/students")
