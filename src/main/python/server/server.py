@@ -10,9 +10,11 @@ class Database:
         self.conn = sqlite3.connect('database.db')
 
     def execute(self, query):
-        returnVal = self.conn.execute(query)
+        rs = []
+        for row in self.conn.execute(query):
+            rs.append(row)
         self.conn.commit()
-        return returnVal
+        return rs
 
     def close(self):
         self.conn.close()
@@ -29,9 +31,11 @@ class Student(Resource):
         parser.add_argument('email', type=str)
         parser.add_argument('name', type=str)
         parser.add_argument('picture', type=str)
-        self.db.execute("INSERT INTO student VALUES ('olivervicovac@hotmail.com','Oliver Vicovac','https://cdn170.picsart.com/upscale-237130600070212.png?r1024x1024')")
-        self.db.close()
+        self.db.execute("INSERT INTO student VALUES ("+parser.parse_args().email+","+parser.parse_args().name+","+parser.parse_args().picture+")")
         return "success!"
+
+    def get(self):
+        return self.db.execute("SELECT * FROM student")
 
 api.add_resource(Student, "/students")
 
