@@ -18,6 +18,10 @@ class Database:
         self.conn.close()
 
 class Student(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('email', type=str)
+    parser.add_argument('name', type=str)
+    parser.add_argument('picture', type=str)
 
     def __init__(self):
         self.db = Database()
