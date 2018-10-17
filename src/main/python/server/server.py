@@ -29,7 +29,9 @@ class Student(Resource):
         parser.add_argument('email', type=str)
         parser.add_argument('name', type=str)
         parser.add_argument('picture', type=str)
-        return "Formular"
+        self.db.execute("INSERT INTO student VALUES ('olivervicovac@hotmail.com','Oliver Vicovac','https://cdn170.picsart.com/upscale-237130600070212.png?r1024x1024')")
+        self.db.close()
+        return "success!"
 
 api.add_resource(Student, "/students")
 
