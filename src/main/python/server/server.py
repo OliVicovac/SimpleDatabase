@@ -21,14 +21,14 @@ class Student(Resource):
 
     def __init__(self):
         self.db = Database()
+        self.db.execute('''CREATE TABLE IF NOT EXISTS student
+                        (email text, name text, picture text)''')
 
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('email', type=str)
         parser.add_argument('name', type=str)
         parser.add_argument('picture', type=str)
-        self.db.execute('''CREATE TABLE student
-                        (email text, name text, picture text)''')
         return "Formular"
 
 api.add_resource(Student, "/students")
