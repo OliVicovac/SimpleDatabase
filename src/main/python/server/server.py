@@ -24,7 +24,7 @@ class Student(Resource):
     def __init__(self):
         self.db = Database()
         self.db.execute('''CREATE TABLE IF NOT EXISTS student
-                        (email text, name text, picture text)''')
+                        (email text PRIMARY KEY , name text, picture text)''')
 
     def post(self):
         parser = reqparse.RequestParser()
@@ -36,6 +36,12 @@ class Student(Resource):
 
     def get(self):
         return self.db.execute("SELECT * FROM student")
+
+    def delete(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('email', type=str)
+        self.db.execute('DELETE FROM student')
+        return "deleted"
 
 api.add_resource(Student, "/students")
 
