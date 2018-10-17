@@ -18,15 +18,15 @@ class Database:
         self.conn.close()
 
 class Student(Resource):
-    parser = reqparse.RequestParser()
-    parser.add_argument('email', type=str)
-    parser.add_argument('name', type=str)
-    parser.add_argument('picture', type=str)
 
     def __init__(self):
         self.db = Database()
 
     def post(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('email', type=str)
+        parser.add_argument('name', type=str)
+        parser.add_argument('picture', type=str)
         self.db.execute('''CREATE TABLE student
                         (email text, name text, picture text)''')
         return "Formular"
