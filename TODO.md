@@ -1,0 +1,9 @@
+- [x] TODO.md erstellen
+- [] git forken und upstream pushen
+- [] git forken & upstream pushen
+- [] Vue.js initialisieren
+- [] Client mit Vue.js auf REST-Server verbinden
+- [] Cypress.io Test für das Listing der User schreiben
+- [] .travis.yml erstellen und das neue origin master (Fork) mit TravisCI einbinden und server/client Tests durchführen
+- [] README erweitern und auf upstream/master pushen
+- [] weiter GUI-Elemente implementieren/testen/dokumentieren
