@@ -43,17 +43,6 @@ class Student(Resource):
         self.db.execute('DELETE FROM student WHERE email = ' + parser.parse_args().email)
         return "deleted"
 
-    def update(self):
-        parser = reqparse.RequestParser()
-        parser.add_argument('email', type=str)
-        parser.add_argument('name', type=str)
-        parser.add_argument('picture', type=str)
-        self.db.execute('DELETE FROM student WHERE email = ' + parser.parse_args().email)
-        self.db.execute('DELETE FROM student WHERE name = ' + parser.parse_args().name)
-        self.db.execute('DELETE FROM student WHERE picture = ' + parser.parse_args().picture)
-        self.db.execute("INSERT INTO student VALUES (" + parser.parse_args().email + "," + parser.parse_args().name + "," + parser.parse_args().picture + ")")
-
-
 api.add_resource(Student, "/students")
 
 if __name__=="__main__":
